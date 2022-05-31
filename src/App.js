@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import SettingsPage from "./pages/settings-page";
+import HomePage from "./pages/home-page";
 import QuestionsPage from "./pages/questions-page";
 import FinalScreenPage from "./pages/final-screen-page";
 import { Container } from "@mui/material";
@@ -11,7 +11,7 @@ const App = () => {
       <Container maxWidth="sm">
         <Box textAlign="center" mt={5}>
           <Routes>
-            <Route path="/" exact element={<SettingsPage />} />
+            <Route path="/" exact element={<HomePage />} />
             <Route path="/questions" element={<QuestionsPage />} />
             <Route path="/score" element={<FinalScreenPage />} />
           </Routes>

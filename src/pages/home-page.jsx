@@ -3,10 +3,9 @@ import { Box } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import { difficultyOptions, typeOptions } from "../utils/select-options";
 import SelectField from "../components/selectField.component";
-import TextFieldComp from "../components/textField.component";
 import AxiosDataFunction from "../components/axiosDataFunction";
 
-const SettingsPage = () => {
+const HomePage = () => {
   const { response, error, loading } = AxiosDataFunction({
     url: "/api_category.php",
   });
@@ -41,7 +40,6 @@ const SettingsPage = () => {
       <SelectField options={response.trivia_categories} label="Category" />
       <SelectField options={difficultyOptions} label="Level of Difficulty" />
       <SelectField options={typeOptions} label="Questions Type" />
-      <TextFieldComp />
       <Box mt={3} width="100%">
         <Button fullWidth variant="contained" type="submit">
           Get Started
@@ -51,4 +49,4 @@ const SettingsPage = () => {
   );
 };
 
-export default SettingsPage;
+export default HomePage;
