@@ -3,7 +3,7 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://opentdb.com";
 
-const AxiosDataFunction = ({ url }) => {
+const useAxios = ({ url }) => {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
@@ -22,4 +22,4 @@ const AxiosDataFunction = ({ url }) => {
   return { response, error, loading };
 };
 
-export default AxiosDataFunction;
+export default useAxios;

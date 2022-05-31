@@ -3,8 +3,8 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useDispatch } from "react-redux";
 import {
   setCategoryValue,
-  // setDifficultyValue,
-  // setQuestionsType,
+  setDifficultyValue,
+  setQuestionsType,
 } from "../features/quizSlice";
 import { Box } from "@mui/system";
 
@@ -15,15 +15,16 @@ const SelectField = ({ label, options }) => {
   const handleChange = (e) => {
     console.log(e);
     setValue(e.target.value);
+    console.log("label", label);
     switch (label) {
       case "Category":
         dispatch(setCategoryValue(e.target.value));
         break;
-      case "Difficulty":
-        dispatch(setCategoryValue(e.target.value));
+      case "Level of Difficulty":
+        dispatch(setDifficultyValue(e.target.value));
         break;
-      case "Type":
-        dispatch(setCategoryValue(e.target.value));
+      case "Questions Type":
+        dispatch(setQuestionsType(e.target.value));
         break;
       default:
         return;

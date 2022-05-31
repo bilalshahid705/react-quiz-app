@@ -10,14 +10,14 @@ export const quizSlice = createSlice({
   name: "quiz",
   initialState,
   reducers: {
+    setQuestionsType: (state, action) => {
+      state.questionsType = action.payload;
+    },
     setCategoryValue: (state, action) => {
       state.category = action.payload;
     },
     setDifficultyValue: (state, action) => {
       state.difficultyLevel = action.payload;
-    },
-    setQuestionsType: (state, action) => {
-      state.questionsType = action.payload;
     },
   },
 });

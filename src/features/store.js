@@ -1,10 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import quizSlice from "./quizSlice";
+import rootReducer from "./rootReducer";
 import logger from "redux-logger";
 
 export const store = configureStore({
-  reducer: {
-    quiz: quizSlice,
-  },
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

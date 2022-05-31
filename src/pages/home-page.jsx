@@ -3,10 +3,10 @@ import { Box } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import { difficultyOptions, typeOptions } from "../utils/select-options";
 import SelectField from "../components/selectField.component";
-import AxiosDataFunction from "../components/axiosDataFunction";
+import useAxios from "../components/useAxios";
 
 const HomePage = () => {
-  const { response, error, loading } = AxiosDataFunction({
+  const { response, error, loading } = useAxios({
     url: "/api_category.php",
   });
 
@@ -35,13 +35,13 @@ const HomePage = () => {
   };
 
   return (
-    <form onSubmit={() => handleSubmit()}>
+    <form>
       <h1>Quiz App</h1>
       <SelectField options={response.trivia_categories} label="Category" />
       <SelectField options={difficultyOptions} label="Level of Difficulty" />
       <SelectField options={typeOptions} label="Questions Type" />
       <Box mt={3} width="100%">
-        <Button fullWidth variant="contained" type="submit">
+        <Button fullWidth variant="contained" onClick={(e) => handleSubmit(e)}>
           Get Started
         </Button>
       </Box>
