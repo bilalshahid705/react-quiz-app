@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 // import { handleAmountChange } from "../redux/actions";
 
 const TextFieldComponent = () => {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     // dispatch(handleAmountChange(e.target.value));

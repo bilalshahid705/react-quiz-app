@@ -1,12 +1,10 @@
-import { createStore, applyMiddleware, compose } from "redux";
-import logger, { createLogger } from "redux-logger";
+import { configureStore } from "@reduxjs/toolkit";
+import { quizSlice } from "./quizSlice";
+import logger from "redux-logger";
 
-import rootReducer from "./rootReducer";
-
-const logger = createLogger({
-  predicate: () => (process.env === "production" ? false : true),
+export const store = configureStore({
+  reducer: {
+    quiz: quizSlice.reducer,
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
-
-const store = createStore(rootReducer, applyMiddleware(logger));
-
-export default store;

@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { useDispatch } from "react-redux";
 import { Box } from "@mui/system";
 
 const SelectField = ({ label, options }) => {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [value, setValue] = useState("");
 
   const handleChange = (e) => {
     console.log(e);
-    // setValue(e.target.value);
+    setValue(e.target.value);
     // switch (label) {
     //   case "Category":
     //     dispatch(handleCategoryChange(e.target.value));
