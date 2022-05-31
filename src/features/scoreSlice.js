@@ -9,7 +9,7 @@ export const scoreSlice = createSlice({
   initialState,
   reducers: {
     setScoreValue: (state, action) => {
-      state.questionsType = action.payload;
+      state.score = action.payload;
     },
   },
 });
