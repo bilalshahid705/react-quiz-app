@@ -8,7 +8,7 @@ import {
 } from "../features/quizSlice";
 import { Box } from "@mui/system";
 
-const SelectField = ({ label, options }) => {
+const SelectField = ({ label, options, errorValue }) => {
   const dispatch = useDispatch();
   const [value, setValue] = useState("");
 
@@ -35,7 +35,12 @@ const SelectField = ({ label, options }) => {
     <Box mt={3} width="100%">
       <FormControl size="small" fullWidth>
         <InputLabel>{label}</InputLabel>
-        <Select value={value} label={label} onChange={(e) => handleChange(e)}>
+        <Select
+          value={value}
+          label={label}
+          onChange={(e) => handleChange(e)}
+          error={errorValue}
+        >
           {options.map(({ id, name }) => (
             <MenuItem value={id} key={id}>
               {name}
