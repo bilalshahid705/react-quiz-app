@@ -5,8 +5,13 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import useAxios from "../components/useAxios";
-import { setScoreValue } from "../features/scoreSlice";
+import useAxios from "../../components/useAxios";
+import { setScoreValue } from "../../features/scoreSlice";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import "./questions-page.style.scss";
 
 const getRandomInt = (max) => {
   return Math.floor(Math.random() * Math.floor(max));
@@ -58,7 +63,9 @@ const QuestionsPage = () => {
 
   const handleClickAnswer = (e) => {
     const question = response.results[questionIndex];
-    if (e.target.textContent === question.correct_answer) {
+    const correctAnswer =
+      questionsType === "boolean" ? e.target.textContent : e.target.value;
+    if (correctAnswer === question.correct_answer) {
       dispatch(setScoreValue(score + 1));
     }
 
@@ -72,19 +79,41 @@ const QuestionsPage = () => {
   return (
     <Box>
       <Typography variant="h4">Questions {questionIndex + 1}</Typography>
-      <Typography mt={5}>
-        {decode(response.results[questionIndex].question)}
-      </Typography>
-      {options.map((data, id) => (
-        <Box mt={2} key={id}>
-          <Button onClick={handleClickAnswer} variant="contained">
-            {decode(data)}
-          </Button>
+      <div className="questions-page-style">
+        <Typography mt={5}>
+          {decode(response.results[questionIndex].question)}
+        </Typography>
+        <FormControl>
+          {options.map((data, id) => (
+            <Box mt={2} key={id}>
+              {questionsType === "boolean" ? (
+                <Button
+                  onClick={handleClickAnswer}
+                  variant="contained"
+                  color="secondary"
+                >
+                  {decode(data)}
+                </Button>
+              ) : (
+                <RadioGroup
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  name="radio-buttons-group"
+                >
+                  <FormControlLabel
+                    onChange={handleClickAnswer}
+                    value={decode(data)}
+                    control={<Radio />}
+                    label={decode(data)}
+                  />
+                </RadioGroup>
+              )}
+            </Box>
+          ))}
+        </FormControl>
+        <Box mt={5}>
+          Score: {score} / {response.results.length}
         </Box>
-      ))}
-      <Box mt={5}>
-        Score: {score} / {response.results.length}
-      </Box>
+      </div>
     </Box>
   );
 };
